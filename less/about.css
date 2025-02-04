@@ -1,0 +1,56 @@
+.about-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 10px;
+    display: block;
+    margin: 20px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Стилі для блоку з текстом */
+.about-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Контейнер для контенту */
+.about-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+/* Блок з текстом */
+.about-text {
+    max-width: 500px;
+    color: white;
+}
+
+/* Оформлення таблиці */
+.schedule-table {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.schedule-table th, .schedule-table td {
+    padding: 10px;
+    border: 1px solid white;
+    text-align: center;
+    color: white;
+}
+
+.schedule-table th {
+    background-color: palevioletred;
+    font-weight: bold;
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.2);
+}
