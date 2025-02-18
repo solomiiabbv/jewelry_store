@@ -1,4 +1,4 @@
-<?php
+<?php 
 session_start();
 include('db.php');
 
@@ -15,18 +15,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Зберігаємо користувача в сесії
         $_SESSION['user'] = [
             'id' => $user['id'],
-            'name' => $user['name']
+            'name' => $user['name'],
+            'role' => $user['user_role'] // Зберігаємо роль користувача
         ];
 
-        // Перенаправлення на головну сторінку після успішного входу
-        header("Location: index.php");
+        // Перенаправлення в залежності від ролі користувача
+        if ($user['user_role'] == 'admin') {
+            header("Location: admin.panel.php"); // Панель адміністратора
+        } else {
+            header("Location: index.php"); // Головна сторінка для звичайного користувача
+        }
         exit();
     } else {
         // Виведення повідомлення про помилку
-        echo "<p>Невірний email або пароль.</p>";
+        $_SESSION['error'] = 'Невірний email або пароль.';
+        header("Location: login.php"); // Повернення на сторінку входу з помилкою
+        exit();
     }
 }
 ?>
+
 
 
 

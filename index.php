@@ -98,6 +98,7 @@ if (isset($_POST['add_to_cart'])) {
         
         <ul class="nav-list">
             <li><a class="nav-list-pidkr" href="about.html">Про нас</a></li>
+             <li><a class="nav-list-pidkr" href="#footer-container">Контакти</a></li>
             <li><a class="nav-list-pidkr" href="#rings">Каблучки</a></li>
             <li><a class="nav-list-pidkr" href="#pendants">Підвіски</a></li>
             <li><a class="nav-list-pidkr" href="#earrings">Сережки</a></li>
@@ -133,8 +134,12 @@ if (isset($_POST['add_to_cart'])) {
     <div class="auth-message logged-out">
         <p>Ви не авторизовані.</p>
     </div>
-<?php endif; ?>
 
+<?php endif; ?>
+<?php if (isset($_SESSION['user'])): ?>
+    <div class="tracking-link">
+            <a href="tracking.php">Переглянути статус моїх замовлень</a>
+    <?php endif; ?>
 
 
     <section class="main-content">
@@ -142,7 +147,6 @@ if (isset($_POST['add_to_cart'])) {
             <h1>Ласкаво просимо до нашого ювелірного магазину!</h1>
             <p>Ознайомтесь з нашою ексклюзивною колекцією ювелірних виробів, створених з любов'ю та витонченістю. Знайдіть щось особливе для кожної нагоди.</p>
         </div>
-
         <form>
         <input type="text" id="search-input" class = 'search-container' placeholder="Пошук товарів..." onkeyup="searchProducts()">
 </form>
@@ -162,7 +166,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="6"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Золота каблучка з діамантом">
             <input type="hidden" name="product_price" value="200">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="8">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -178,7 +182,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="7"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Срібна каблучка">
             <input type="hidden" name="product_price" value="100">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="9">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -194,7 +198,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="8"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Каблучка з міді">
             <input type="hidden" name="product_price" value="20">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="18">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -230,7 +234,7 @@ if (isset($_POST['add_to_cart'])) {
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($product['name']); ?>">
                         <input type="hidden" name="product_price" value="<?php echo ($discount > 0) ? $discounted_price : $original_price; ?>">
-                        <input type="number" name="quantity" value="1" min="1">
+                        <input type="number" name="quantity" value="1" min="1"max="<?php echo $product['stock']; ?>">
                         <button type="submit" name="add_to_cart">Додати в кошик</button>
                     </form>
         <?php else: ?>
@@ -258,7 +262,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="9"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Золота підвіска">
             <input type="hidden" name="product_price" value="500">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1" max="4">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -274,7 +278,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="10"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Срібна підвіска">
             <input type="hidden" name="product_price" value="400">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="5">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                 </div>
@@ -290,7 +294,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="11"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Підвіска з міді">
             <input type="hidden" name="product_price" value="200">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="3">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -326,7 +330,7 @@ if (isset($_POST['add_to_cart'])) {
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($product['name']); ?>">
                         <input type="hidden" name="product_price" value="<?php echo ($discount > 0) ? $discounted_price : $original_price; ?>">
-                        <input type="number" name="quantity" value="1" min="1">
+                        <input type="number" name="quantity" value="1" min="1"max="<?php echo $product['stock']; ?>">
                         <button type="submit" name="add_to_cart">Додати в кошик</button>
                     </form>
                         <?php else: ?>
@@ -353,7 +357,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="12"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Золоті сережки">
             <input type="hidden" name="product_price" value="1000">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="6">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -369,7 +373,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="13"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Срібні сережки">
             <input type="hidden" name="product_price" value="200">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="5">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -385,7 +389,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="14"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Сережки з міді">
             <input type="hidden" name="product_price" value="20">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="20">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                     </div>
@@ -420,7 +424,7 @@ if (isset($_POST['add_to_cart'])) {
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($product['name']); ?>">
                         <input type="hidden" name="product_price" value="<?php echo ($discount > 0) ? $discounted_price : $original_price; ?>">
-                        <input type="number" name="quantity" value="1" min="1">
+                        <input type="number" name="quantity" value="1" min="1"max="<?php echo $product['stock']; ?>">
                         <button type="submit" name="add_to_cart">Додати в кошик</button>
                     </form>
                         <?php else: ?>
@@ -447,7 +451,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="15"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Золотий браслет">
             <input type="hidden" name="product_price" value="300">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="9">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                         </div>
@@ -463,7 +467,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="16"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Срібний браслет">
             <input type="hidden" name="product_price" value="150">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="8">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                 </div>
@@ -479,7 +483,7 @@ if (isset($_POST['add_to_cart'])) {
             <input type="hidden" name="product_id" value="17"> <!-- Унікальний ID для статичного товару -->
             <input type="hidden" name="product_name" value="Браслет з міді">
             <input type="hidden" name="product_price" value="30">
-            <input type="number" name="quantity" value="1" min="1">
+            <input type="number" name="quantity" value="1" min="1"max="2">
             <button type="submit" name="add_to_cart">Додати в кошик</button>
         </form>
                 </div>
@@ -514,7 +518,7 @@ if (isset($_POST['add_to_cart'])) {
                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                         <input type="hidden" name="product_name" value="<?php echo htmlspecialchars($product['name']); ?>">
                             <input type="hidden" name="product_price" value="<?php echo ($discount > 0) ? $discounted_price : $original_price; ?>">
-                        <input type="number" name="quantity" value="1" min="1">
+                        <input type="number" name="quantity" value="1" min="1"max="<?php echo $product['stock']; ?>">
                         <button type="submit" name="add_to_cart">Додати в кошик</button>
                     </form>
         <?php else: ?>
@@ -572,6 +576,7 @@ echo "</div>";
 </body>
 </html>
     <!-- Footer with contact info -->
+    <section class="product-category" id="footer-container">
     <footer>
         <div class="footer-container">
             <ul class="footer-links">

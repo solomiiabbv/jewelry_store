@@ -1,0 +1,21 @@
+/* Задаємо стилі для футера, щоб він знаходився внизу */
+footer {
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 0;
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* Задаємо для тіла сторінки, щоб футер не перекривав контент */
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    flex: 1;
+}

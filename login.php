@@ -10,7 +10,8 @@
 
 <div class="auth-container">
     <div class="auth-form">
-    <button class="close-btn" onclick="closeRegister()">×</button>
+        <button class="close-btn" onclick="closeRegister()">×</button>
+        
         <!-- Вхід -->
         <div id="login-section" class="auth-section">
             <h2>Вхід</h2>
@@ -23,6 +24,16 @@
 
                 <button type="submit">Увійти</button>
             </form>
+            
+            <!-- Повідомлення про помилки входу -->
+            <?php
+            session_start();
+            if (isset($_SESSION['error'])) {
+                echo "<p class='error-message'>" . $_SESSION['error'] . "</p>";
+                unset($_SESSION['error']);
+            }
+            ?>
+
             <p>Ще не маєте акаунту? <a href="register.php">Зареєструватися</a></p>
         </div>
     </div>
